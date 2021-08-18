@@ -3,17 +3,29 @@
 <p>CLICK ME above!!</p>
 
 <div *ngIf="componentresult && componentresult.length > 0;"><p>Redux Works!</p>
-    <table style="width:100%" class="tableCarMakes">
+
+    <div>
+        <button type="button" class="btn btn-primary" (click)="Previous()">Previous {{rowAmount}}</button>
+        <button type="button" class="btn btn-primary" (click)="Next()">Next {{rowAmount}}</button>
+    </div>
+
+    <table id="dtBasicExample" style="width:100%" class="tableCarMakes">
         <tr>
           <th>Make_ID</th>
           <th>Make_Name</th>
         </tr>
 
-        <tr *ngFor="let model of componentresult; index as i;">
+        <tr *ngFor="let model of paginatedTable(); index as i; ">
             <td>{{model.Make_ID}}</td>
             <td>{{model.Make_Name}}</td>
         </tr>
     </table>
+    
 </div>
 
-<p *ngIf="proccessing">Results are being retrieved...</p>
+<div *ngIf="proccessing">
+    <p>Results are being retrieved...</p>
+    <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
